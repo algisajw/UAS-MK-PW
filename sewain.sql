@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: May 14, 2026 at 10:01 AM
--- Server version: 9.6.0
--- PHP Version: 8.5.5
+-- Host: 127.0.0.1
+-- Generation Time: May 14, 2026 at 04:20 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,12 +28,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `gedung` (
-  `id` int NOT NULL,
-  `nama_gedung` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `kapasitas` int NOT NULL,
-  `harga` int NOT NULL,
-  `lokasi` text COLLATE utf8mb4_general_ci NOT NULL
+  `id` int(11) NOT NULL,
+  `nama_gedung` varchar(255) NOT NULL,
+  `kapasitas` int(11) NOT NULL,
+  `harga` int(11) NOT NULL,
+  `harga_per_jam` int(11) NOT NULL,
+  `durasi_sewa` int(11) NOT NULL,
+  `lokasi` text NOT NULL,
+  `status` enum('Tersedia','Disewa') DEFAULT 'Tersedia'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `gedung`
+--
 
 -- --------------------------------------------------------
 
@@ -42,11 +49,15 @@ CREATE TABLE `gedung` (
 --
 
 CREATE TABLE `users` (
-  `id` int NOT NULL,
-  `username` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+  `id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
 
 --
 -- Indexes for dumped tables
@@ -72,16 +83,15 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `gedung`
 --
 ALTER TABLE `gedung`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
