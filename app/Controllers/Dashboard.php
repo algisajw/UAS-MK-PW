@@ -31,14 +31,14 @@ class Dashboard extends BaseController
         return redirect()->to('/dashboard');
     }
 
-    public function edit($id)
+    public function edit(int $id)
     {
         $model = new GedungModel();
         $data['gedung'] = $model->find($id);
         return view('dashboard/edit', $data);
     }
 
-    public function update($id)
+    public function update(int $id)
     {
         $model = new GedungModel();
         $data = [
@@ -51,7 +51,7 @@ class Dashboard extends BaseController
         return redirect()->to('/dashboard');
     }
 
-    public function delete($id)
+    public function delete(int $id)
     {
         $model = new GedungModel();
         $model->delete($id);
